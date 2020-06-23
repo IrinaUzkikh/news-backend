@@ -17,7 +17,15 @@ module.exports.createArticle = (req, res, next) => {
   Article.create({
     keyword, title, text, date, source, link, image, owner,
   })
-    .then((article) => res.send({ data: article }))
+    .then((article) => res.send({
+      keyword: article.keyword,
+      title: article.title,
+      text: article.text,
+      date: article.date,
+      source: article.source,
+      link: article.link,
+      image: article.image,
+    }))
     .catch((err) => next(err));
 };
 
