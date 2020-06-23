@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const { linkValidationMethod } = require('../middlewares/linkValidationMethod');
+const { dateValidationMethod } = require('../middlewares/dateValidationMethod');
 
 const {
   getArticles,
@@ -15,7 +16,7 @@ router.post('/', celebrate({
     keyword: Joi.string().required(),
     title: Joi.string().required(),
     text: Joi.string().required(),
-    date: Joi.date().required(),
+    date: Joi.required().custom(dateValidationMethod),
     source: Joi.string().required(),
     link: Joi.string().required().custom(linkValidationMethod),
     image: Joi.string().required().custom(linkValidationMethod),

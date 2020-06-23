@@ -22,8 +22,6 @@ const {
 
 const NotFoundError = require('./errors/notFoundError');
 
-// const { linkValidationMethod } = require('./middlewares/linkValidationMethod');
-
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT, DATABASE_URL } = require('./config.js');

@@ -18,11 +18,11 @@ module.exports.createUser = (req, res, next) => {
   bcrypt.hash(password, 10)
     .then((hash) => User.create(
       {
-        email, password: hash, name
+        email, password: hash, name,
       },
     ))
     .then((user) => res.send({
-       email: user.email, name: user.name,
+      email: user.email, name: user.name,
     }))
     .catch((err) => {
       if (err.message.includes('Error, expected `email` to be unique')) {
