@@ -22,7 +22,6 @@ const articleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
   link: {
     type: String,
     validate: {
@@ -43,6 +42,7 @@ const articleSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: true,
+    select: false,
   },
 });
 
