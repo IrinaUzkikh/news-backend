@@ -18,6 +18,7 @@ module.exports.createArticle = (req, res, next) => {
     keyword, title, text, date, source, link, image, owner,
   })
     .then((article) => res.send({
+      id: article._id,
       keyword: article.keyword,
       title: article.title,
       text: article.text,
@@ -30,7 +31,7 @@ module.exports.createArticle = (req, res, next) => {
 };
 
 module.exports.deleteArticleId = (req, res, next) => {
-  Article.findById(req.params.id)
+  Article.findById(req.params.id).select('+owner')
     .orFail(() => new NotFoundError('Статья не найдена'))
     .then((article) => {
       if (JSON.stringify(article.owner) !== JSON.stringify(req.user._id)) {
