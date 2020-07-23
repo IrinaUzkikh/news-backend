@@ -36,8 +36,10 @@ module.exports.createUser = (req, res, next) => {
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
+
   return User.findUserByCredentials(email, password)
     .then((user) => {
+    /*  res.header('Access-Control-Allow-Origin', 'http://localhost:8080'); */
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : JWT_KEY, { expiresIn: '7d' });
       res.send({ token });
     })
